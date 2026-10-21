@@ -8,7 +8,6 @@ public class ContentExtractorFactory {
     private final Map<String, ContentExtractor> extractorRegistry = new HashMap<>();
 
     public ContentExtractorFactory() {
-        // Đăng ký sẵn các định dạng mặc định khi khởi tạo (Có thể thêm bớt ở Runtime)
         registerExtractor("txt", new TxtContentExtractor());
         registerExtractor("pdf", new PdfContentExtractor());
 

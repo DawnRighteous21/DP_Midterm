@@ -4,6 +4,8 @@ import extraction.ContentExtractorFactory;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -35,15 +37,14 @@ public class MainSwingUI extends JFrame {
     private DefaultTableModel tableModel;
     private JTable table;
 
-    // Bảng màu chuẩn Academic Light Theme
-    private static final Color BG_APP = new Color(243, 244, 246);       // Gray 100
-    private static final Color BG_CARD = new Color(255, 255, 255);      // White
-    private static final Color PRIMARY = new Color(79, 70, 229);        // Indigo 600
-    private static final Color PRIMARY_HOVER = new Color(67, 56, 202);  // Indigo 700
-    private static final Color SECONDARY = new Color(229, 231, 235);    // Gray 200
-    private static final Color SECONDARY_HOVER = new Color(209, 213, 219); // Gray 300
-    private static final Color TEXT_MAIN = new Color(17, 24, 39);       // Gray 900
-    private static final Color TEXT_MUTED = new Color(107, 114, 128);   // Gray 500
+    private static final Color BG_APP = new Color(243, 244, 246);
+    private static final Color BG_CARD = new Color(255, 255, 255);
+    private static final Color PRIMARY = new Color(79, 70, 229);
+    private static final Color PRIMARY_HOVER = new Color(67, 56, 202);
+    private static final Color SECONDARY = new Color(229, 231, 235);
+    private static final Color SECONDARY_HOVER = new Color(209, 213, 219);
+    private static final Color TEXT_MAIN = new Color(17, 24, 39);
+    private static final Color TEXT_MUTED = new Color(107, 114, 128);
 
     public MainSwingUI(DocumentProcessor processor) {
         this.processor = processor;
@@ -52,7 +53,6 @@ public class MainSwingUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         getContentPane().setBackground(BG_APP);
-
         initComponents();
     }
 
@@ -60,11 +60,9 @@ public class MainSwingUI extends JFrame {
         setLayout(new BorderLayout());
         ((JPanel)getContentPane()).setBorder(new EmptyBorder(24, 32, 24, 32));
 
-        // 1. Thẻ chính (Main Card) chứa toàn bộ giao diện với bóng đổ
         ModernCard mainCard = new ModernCard(16);
         mainCard.setLayout(new BorderLayout());
 
-        // 2. Thanh công cụ (Top Bar)
         JPanel topBar = new JPanel(new BorderLayout());
         topBar.setBackground(BG_CARD);
         topBar.setBorder(BorderFactory.createCompoundBorder(
@@ -88,17 +86,13 @@ public class MainSwingUI extends JFrame {
                 "Chuyển đổi Storage", JOptionPane.INFORMATION_MESSAGE);
         });
 
-        btnAdd.addActionListener(e -> {
-            new AddDocumentDialog(this, processor, null).setVisible(true);
-        });
+        btnAdd.addActionListener(e -> new AddDocumentDialog(this, processor, null).setVisible(true));
 
         actionPanel.add(btnSwitchDb);
         actionPanel.add(btnAdd);
-
         topBar.add(lblBrand, BorderLayout.WEST);
         topBar.add(actionPanel, BorderLayout.EAST);
 
-        // 3. Bảng dữ liệu (Data Table)
         String[] cols = {"Mã Hồ Sơ", "Người Nộp", "Email", "Loại", "Định Dạng", "Trạng Thái"};
         tableModel = new DefaultTableModel(cols, 0) {
             @Override
@@ -108,7 +102,6 @@ public class MainSwingUI extends JFrame {
         table = new JTable(tableModel);
         styleModernTable(table);
 
-        // Sự kiện Double-Click để mở lại bản nháp
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -132,7 +125,6 @@ public class MainSwingUI extends JFrame {
 
         mainCard.add(topBar, BorderLayout.NORTH);
         mainCard.add(scrollPane, BorderLayout.CENTER);
-
         add(mainCard, BorderLayout.CENTER);
     }
 
@@ -142,10 +134,10 @@ public class MainSwingUI extends JFrame {
         table.setShowHorizontalLines(true);
         table.setGridColor(new Color(243, 244, 246));
         table.setIntercellSpacing(new Dimension(0, 0));
-        table.setSelectionBackground(new Color(238, 242, 255)); // Indigo 50
+        table.setSelectionBackground(new Color(238, 242, 255));
         table.setSelectionForeground(PRIMARY);
         table.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        table.setForeground(new Color(55, 65, 81)); // Gray 700
+        table.setForeground(new Color(55, 65, 81));
 
         JTableHeader header = table.getTableHeader();
         header.setBackground(BG_CARD);
@@ -155,7 +147,6 @@ public class MainSwingUI extends JFrame {
         header.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(229, 231, 235)));
         ((DefaultTableCellRenderer) header.getDefaultRenderer()).setHorizontalAlignment(JLabel.LEFT);
 
-        // Thêm padding cho các ô
         table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -183,6 +174,8 @@ public class MainSwingUI extends JFrame {
     }
 
     public static void main(String[] args) {
+        System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
+
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             Font baseFont = new Font("Segoe UI", Font.PLAIN, 14);
@@ -219,10 +212,6 @@ public class MainSwingUI extends JFrame {
     }
 }
 
-/* =========================================================================
- * CUSTOM UI COMPONENTS (Vẽ bằng Graphics2D)
- * ========================================================================= */
-
 class ModernCard extends JPanel {
     private final int radius;
 
@@ -230,7 +219,7 @@ class ModernCard extends JPanel {
         this.radius = radius;
         setOpaque(false);
         setBackground(Color.WHITE);
-        setBorder(new EmptyBorder(12, 12, 16, 12)); // Chừa không gian cho shadow
+        setBorder(new EmptyBorder(12, 12, 16, 12));
     }
 
     @Override
@@ -238,7 +227,6 @@ class ModernCard extends JPanel {
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        // Vẽ 4 lớp bóng đổ bán trong suốt giả lập độ sâu (Elevation)
         g2.setColor(new Color(0, 0, 0, 4));
         g2.fillRoundRect(4, 6, getWidth() - 8, getHeight() - 10, radius, radius);
         g2.setColor(new Color(0, 0, 0, 6));
@@ -249,7 +237,6 @@ class ModernCard extends JPanel {
         g2.setColor(getBackground());
         g2.fillRoundRect(0, 0, getWidth() - 4, getHeight() - 6, radius, radius);
 
-        // Viền siêu mỏng
         g2.setColor(new Color(229, 231, 235));
         g2.setStroke(new BasicStroke(1f));
         g2.drawRoundRect(0, 0, getWidth() - 4, getHeight() - 6, radius, radius);

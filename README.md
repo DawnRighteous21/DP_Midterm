@@ -17,27 +17,18 @@ Dự án được tái cấu trúc thành 6 module tính năng độc lập nh�
 - `storage/`: Áp dụng Repository/Strategy Pattern tách biệt thao tác lưu trữ Local JSON và MySQL (Yêu cầu 5).
 - `service/` & `ui/`: Tầng điều phối trung tâm (`DocumentProcessor`) và Giao diện người dùng Java Swing (`MainSwingUI`).
 
-## 3. Hướng dẫn biên dịch và khởi chạy (Command Line)
 
-Yêu cầu hệ thống: Đã cài đặt Java Development Kit (JDK 11 trở lên).
+## 3. Hướng dẫn biên dịch và khởi chạy
 
-**Bước 1:** Mở Terminal (hoặc Command Prompt / PowerShell) và điều hướng vào thư mục `src` của dự án.
+Yêu cầu hệ thống: Đã cài đặt Java Development Kit (JDK 11 trở lên). Nhóm đã cung cấp sẵn các script chạy tự động. Script sẽ tự động biên dịch dự án vào thư mục tạm, khởi chạy giao diện và dọn dẹp sạch sẽ các file `.class` sau khi phần mềm đóng lại.
 
+**Đối với người dùng Windows:**
+
+Chỉ cần nhấp đúp chuột vào tệp `windows_run.bat` nằm ở thư mục gốc của dự án.
+
+**Đối với người dùng Linux / macOS:**
+
+Mở Terminal tại thư mục gốc của dự án, cấp quyền thực thi và chạy script:
 ```bash
-cd du_ong_dan_toi_thu_muc/src
-
-```
-
-**Bước 2:** Biên dịch toàn bộ mã nguồn của các package bằng lệnh `javac`:
-
-```bash
-javac model/*.java extraction/*.java validation/*.java notification/*.java storage/*.java service/*.java ui/*.java
-
-```
-
-**Bước 3:** Khởi chạy hệ thống qua file Main của gói UI:
-
-```bash
-java ui.MainSwingUI
-
-```
+chmod +x linux_run.sh
+./run.sh

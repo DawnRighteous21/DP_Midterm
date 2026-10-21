@@ -10,7 +10,6 @@ public class TxtContentExtractor implements ContentExtractor {
         try {
             return new String(Files.readAllBytes(Paths.get(filePath)));
         } catch (Exception e) {
-            // Fallback để đảm bảo code Demo chạy mượt mà kể cả khi chưa có file vật lý
             return "[Nội dung TXT giả lập] Văn bản trích xuất từ " + filePath;
         }
     }
