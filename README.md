@@ -24,7 +24,7 @@ Yêu cầu hệ thống: Đã cài đặt Java Development Kit (JDK 11 trở lê
 **Bước 1:** Mở Terminal (hoặc Command Prompt / PowerShell) và điều hướng vào thư mục `src` của dự án.
 
 ```bash
-cd du_ong_dan_toi_thu_muc/src
+cd duong_dan_toi_thu_muc/src
 
 ```
 
