@@ -41,3 +41,7 @@ javac model/*.java extraction/*.java validation/*.java notification/*.java stora
 java ui.MainSwingUI
 
 ```
+
+## 4. Link video
+
+[Video Demo](https://drive.google.com/drive/folders/1r65M0E7cwKyf06kHSRUH3ffj22CencL5?fbclid=IwY2xjawVIAbFleHRuA2FlbQIxMQBwZG9mBHNydGMGYXBwX2lkATAAAR7DJdAdopBU4bJIDCrFWTp4JwmdtqIOrENKrvPQyJLZFcKDi16S1hbhA3Vgkw_aem_ljg7aOZaLZ-wnCAbRzBw1A)
