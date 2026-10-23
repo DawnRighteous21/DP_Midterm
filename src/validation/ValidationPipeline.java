@@ -23,11 +23,9 @@ public class ValidationPipeline {
     }
 
     private void rebuildChain() {
-        // Tự động móc xích trạm hiện tại với trạm tiếp theo
         for (int i = 0; i < stations.size() - 1; i++) {
             stations.get(i).setNext(stations.get(i + 1));
         }
-        // Trạm cuối cùng trỏ về null
         if (!stations.isEmpty()) {
             stations.get(stations.size() - 1).setNext(null);
         }
@@ -38,7 +36,6 @@ public class ValidationPipeline {
             System.out.println("  [CẢNH BÁO] Đường ống kiểm duyệt đang trống!");
             return;
         }
-        // Kích hoạt trạm đầu tiên, luồng sẽ tự động chạy qua các trạm nhờ Template Method
         stations.get(0).validate(doc);
     }
 }

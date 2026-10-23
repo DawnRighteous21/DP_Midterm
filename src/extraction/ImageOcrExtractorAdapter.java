@@ -16,10 +16,8 @@ public class ImageOcrExtractorAdapter implements ContentExtractor {
         try {
             imageBytes = Files.readAllBytes(Paths.get(filePath));
         } catch (Exception e) {
-            // Bỏ qua lỗi file để pass bước Demo
-            imageBytes = new byte[1024]; 
+            imageBytes = new byte[1024];
         }
-        // Chuyển đổi lời gọi extractContent() chuẩn sang API chuyên biệt của Adaptee
         return aiOcrService.performOpticalCharacterRecognition(imageBytes, "vie+eng");
     }
 }

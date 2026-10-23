@@ -4,11 +4,11 @@ Dự án nâng cấp hệ thống tiếp nhận và xử lý hồ sơ điện t�
 
 ## 1. Link Video Thuyết trình & Demo
 
-- **Video Demo (HD):** `[DÁN_LINK_YOUTUBE_HOẶC_GOOGLE_DRIVE_CÔNG_KHAI_VÀO_ĐÂY]`
+- **Video Demo:** [Link](https://drive.google.com/drive/folders/1r65M0E7cwKyf06kHSRUH3ffj22CencL5?fbclid=IwY2xjawVIAbFleHRuA2FlbQIxMQBwZG9mBHNydGMGYXBwX2lkATAAAR7DJdAdopBU4bJIDCrFWTp4JwmdtqIOrENKrvPQyJLZFcKDi16S1hbhA3Vgkw_aem_ljg7aOZaLZ-wnCAbRzBw1A)
 
-## 2. Cấu trúc thư mục (Packages)
+## 2. Cấu trúc thư mục
 
-Dự án được tái cấu trúc thành 6 module tính năng độc lập nhằm đảm bảo nguyên tắc Single Responsibility (SRP):
+Dự án được tái cấu trúc thành 6 module tính năng độc lập nhằm đảm bảo nguyên tắc Single Responsibility:
 
 - `model/`: Chứa lớp thực thể và `DocumentBuilder` hỗ trợ lưu nháp (Yêu cầu 1).
 - `extraction/`: Áp dụng Strategy, Adapter và Factory Pattern để trích xuất nội dung đa định dạng (.TXT, .PDF, .JPG) (Yêu cầu 2).
@@ -17,7 +17,7 @@ Dự án được tái cấu trúc thành 6 module tính năng độc lập nh�
 - `storage/`: Áp dụng Repository/Strategy Pattern tách biệt thao tác lưu trữ Local JSON và MySQL (Yêu cầu 5).
 - `service/` & `ui/`: Tầng điều phối trung tâm (`DocumentProcessor`) và Giao diện người dùng Java Swing (`MainSwingUI`).
 
-## 3. Hướng dẫn biên dịch và khởi chạy (Command Line)
+## 3. Hướng dẫn biên dịch và khởi chạy
 
 Yêu cầu hệ thống: Đã cài đặt Java Development Kit (JDK 11 trở lên).
 
@@ -41,7 +41,3 @@ javac model/*.java extraction/*.java validation/*.java notification/*.java stora
 java ui.MainSwingUI
 
 ```
-
-## 4. Link video
-
-[Video Demo](https://drive.google.com/drive/folders/1r65M0E7cwKyf06kHSRUH3ffj22CencL5?fbclid=IwY2xjawVIAbFleHRuA2FlbQIxMQBwZG9mBHNydGMGYXBwX2lkATAAAR7DJdAdopBU4bJIDCrFWTp4JwmdtqIOrENKrvPQyJLZFcKDi16S1hbhA3Vgkw_aem_ljg7aOZaLZ-wnCAbRzBw1A)
